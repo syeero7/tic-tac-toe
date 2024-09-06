@@ -60,8 +60,43 @@ function GameController(playerOne = "player 1", playerTwo = "player 2") {
 
     board.markCell(index, getActivePlayer().marker);
 
-    switchPlayerTurn();
-    newRound();
+    const checkWin = (marker) => {
+      const winningCombinations = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+      ];
+
+      return winningCombinations.some((combinations) =>
+        combinations.every((cell) => board.getBoard()[cell].includes(marker)),
+      );
+    };
+
+    const checkDraw = () => {
+      return board
+        .getBoard()
+        .every(
+          (cell) => cell === players[0].marker || cell === players[1].marker,
+        );
+    };
+
+    const handleOutcomes = () => {
+      if (checkWin(getActivePlayer().marker)) {
+        console.log(`${getActivePlayer().name} is the winner`);
+      } else if (checkDraw()) {
+        console.log("Draw");
+      } else {
+        switchPlayerTurn();
+        newRound();
+      }
+    };
+    
+    handleOutcomes();
   };
 
   newRound();
