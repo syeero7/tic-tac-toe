@@ -7,5 +7,34 @@
     <script src="./script.js" defer></script>
     <title>Tic Tac Toe</title>
   </head>
-  <body></body>
+  <body>
+    <main id="gridContainer">
+      <button data-cell="0" type="button"></button>
+      <button data-cell="1" type="button"></button>
+      <button data-cell="2" type="button"></button>
+      <button data-cell="3" type="button"></button>
+      <button data-cell="4" type="button"></button>
+      <button data-cell="5" type="button"></button>
+      <button data-cell="6" type="button"></button>
+      <button data-cell="7" type="button"></button>
+      <button data-cell="8" type="button"></button>
+    </main>
+    <div class="display-start">
+      <p>
+        Marker : X
+        <label for="playerOne">Player One Name :</label>
+        <input id="playerOne" type="text" placeholder="Player 1">
+      </p>
+      <p>
+        Marker : O
+        <label for="playerTwo">Player Two Name :</label>
+        <input id="playerTwo" type="text" placeholder="Player 2">
+      </p>
+      <button id="StartGame" type="button">Start</button>
+    </div>
+    <div class="display-outcome">
+      <p data-message></p>
+      <button id="restartBtn" type="button">Restart</button>
+    </div>
+  </body>
 </html>
