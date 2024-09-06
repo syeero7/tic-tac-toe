@@ -30,4 +30,17 @@ function GameBoard() {
   return { generateCells, getBoard, markCell, printBoard };
 }
 
-const game = GameBoard();
+function GameController(playerOne = "player 1", playerTwo = "player 2") {
+  const board = GameBoard();
+
+  const players = [
+    { name: playerOne, marker: "X" },
+    { name: playerTwo, marker: "O" },
+  ];
+
+  let activePlayer = players[0];
+
+  const getActivePlayer = () => activePlayer;
+}
+
+const game = GameController();
