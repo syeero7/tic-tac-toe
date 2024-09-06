@@ -13,7 +13,21 @@ function GameBoard() {
     board[cell] = player;
   };
 
-  return { generateCells, getBoard, markCell };
+  const printBoard = () => {
+    const grid = board.reduce((newArray, item, index) => {
+      const subArray = Math.floor(index / 3);
+      if (!newArray[subArray]) {
+        newArray[subArray] = [];
+      }
+      newArray[subArray].push(item);
+
+      return newArray;
+    }, []);
+
+    console.log(grid);
+  };
+
+  return { generateCells, getBoard, markCell, printBoard };
 }
 
 const game = GameBoard();
