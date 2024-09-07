@@ -89,8 +89,10 @@ function GameController(playerOne = "player 1", playerTwo = "player 2") {
 
     const handleOutcomes = () => {
       if (checkWin(getActivePlayer().marker)) {
+        ScreenController().displayWinner(getActivePlayer().name);
         console.log(`${getActivePlayer().name} is the winner`);
       } else if (checkDraw()) {
+        ScreenController().displayDraw();
         console.log("Draw");
       } else {
         switchPlayerTurn();
@@ -121,6 +123,8 @@ function GameController(playerOne = "player 1", playerTwo = "player 2") {
 function ScreenController() {
   const gameBoard = document.querySelector("#gameBoard");
   const form = document.querySelector("form.display");
+  const display = document.querySelector("div.display");
+  const messages = document.querySelector("[data-message]");
   const game = GameController();
 
   const updateScreen = () => {
@@ -144,6 +148,16 @@ function ScreenController() {
       gameBoard.firstChild.remove();
     }
     updateScreen();
+  };
+
+  const displayWinner = (name) => {
+    messages.textContent = `${name} is the winner`;
+    display.classList.add("outcome");
+  };
+
+  const displayDraw = () => {
+    messages.textContent = "Draw";
+    display.classList.add("outcome");
   };
 
   function clickHandleBoard(e) {
@@ -171,6 +185,8 @@ function ScreenController() {
 
   gameBoard.addEventListener("click", clickHandleBoard);
   form.addEventListener("submit", getPlayerNames);
+
+  return { displayWinner, displayDraw };
 }
 
 ScreenController();
