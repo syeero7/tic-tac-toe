@@ -1,0 +1,103 @@
+@font-face {
+  font-family: "caveat";
+  src: url("./font/caveat-variable-font.woff2");
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ff-caveat: "caveat", system-ui;
+  --fs: 3rem;
+  --cell-size: 100px;
+  --marker-fs: calc(var(--cell-size) * 0.95);
+
+  --white: #fff;
+  --whitesmoke: #f5f5f5;
+  --black: #000;
+  --opacity-black: hsla(0, 0%, 0%, 0.9);
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  font-family: var(--ff-caveat);
+  font-size: var(--fs);
+  position: relative;
+  text-align: center;
+  font-weight: 500;
+}
+
+button,
+input {
+  font: inherit;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+#gameBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  background-color: var(--black);
+  gap: 4px;
+}
+
+[data-cell] {
+  align-items: center;
+  background-color: var(--white);
+  color: var(--black);
+  display: flex;
+  font-size: var(--marker-fs);
+  font-weight: 700;
+  justify-content: center;
+}
+
+.displayTurn {
+  margin-bottom: 8vh;
+}
+
+.display {
+  display: none;
+  position: fixed;
+  background-color: var(--opacity-black);
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: var(--whitesmoke);
+  gap: 1rem;
+}
+
+.button {
+  padding: 0.2em 1em;
+}
+
+.display p {
+  width: min(500px, 90%);
+}
+
+.start > p {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
+
+.display.start,
+.display.outcome {
+  display: flex;
+}
