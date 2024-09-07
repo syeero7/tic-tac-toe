@@ -125,6 +125,7 @@ function ScreenController() {
   const form = document.querySelector("form.display");
   const display = document.querySelector("div.display");
   const messages = document.querySelector("[data-message]");
+  const restartBtn = document.querySelector("#restartBtn");
   const game = GameController();
 
   const updateScreen = () => {
@@ -181,10 +182,17 @@ function ScreenController() {
     refreshDisplay();
   }
 
+  function restartGame() {
+    game.restart();
+    display.classList.remove("outcome");
+    refreshDisplay();
+  }
+
   updateScreen();
 
   gameBoard.addEventListener("click", clickHandleBoard);
   form.addEventListener("submit", getPlayerNames);
+  restartBtn.addEventListener("click", restartGame);
 
   return { displayWinner, displayDraw };
 }
