@@ -17,21 +17,7 @@ function GameBoard() {
     board[cell] = player;
   };
 
-  const printBoard = () => {
-    const grid = board.reduce((newArray, item, index) => {
-      const subArray = Math.floor(index / 3);
-      if (!newArray[subArray]) {
-        newArray[subArray] = [];
-      }
-      newArray[subArray].push(item);
-
-      return newArray;
-    }, []);
-
-    console.log(grid);
-  };
-
-  return { generateCells, getBoard, markCell, printBoard };
+  return { generateCells, getBoard, markCell };
 }
 
 function GameController(playerOne = "player 1", playerTwo = "player 2") {
@@ -50,11 +36,6 @@ function GameController(playerOne = "player 1", playerTwo = "player 2") {
 
   const switchPlayerTurn = () => {
     activePlayer = activePlayer === players[0] ? players[1] : players[0];
-  };
-
-  const newRound = () => {
-    board.printBoard();
-    console.log(`${getActivePlayer().name}'s Turn`);
   };
 
   const playRound = (index) => {
@@ -90,13 +71,10 @@ function GameController(playerOne = "player 1", playerTwo = "player 2") {
     const handleOutcomes = () => {
       if (checkWin(getActivePlayer().marker)) {
         ScreenController().displayWinner(getActivePlayer().name);
-        console.log(`${getActivePlayer().name} is the winner`);
       } else if (checkDraw()) {
         ScreenController().displayDraw();
-        console.log("Draw");
       } else {
         switchPlayerTurn();
-        newRound();
       }
     };
 
@@ -106,10 +84,7 @@ function GameController(playerOne = "player 1", playerTwo = "player 2") {
   function restart() {
     board.getBoard().splice(0, board.getBoard().length);
     board.generateCells();
-    newRound();
   }
-
-  newRound();
 
   return {
     playRound,
