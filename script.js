@@ -42,6 +42,8 @@ function GameController(playerOne = "player 1", playerTwo = "player 2") {
     { name: playerTwo, marker: "O" },
   ];
 
+  const getPlayers = () => players;
+
   let activePlayer = players[0];
 
   const getActivePlayer = () => activePlayer;
@@ -95,13 +97,23 @@ function GameController(playerOne = "player 1", playerTwo = "player 2") {
         newRound();
       }
     };
-    
+
     handleOutcomes();
   };
 
+  function restart() {
+    board.getBoard().splice(0, board.getBoard().length);
+    board.generateCells();
+    newRound();
+  }
+
   newRound();
 
-  return { playRound };
+  return {
+    playRound,
+    getActivePlayer,
+    getBoard: board.getBoard,
+    getPlayers,
+    restart,
+  };
 }
-
-const game = GameController();
