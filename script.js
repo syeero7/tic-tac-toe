@@ -120,7 +120,7 @@ function GameController(playerOne = "player 1", playerTwo = "player 2") {
 
 function ScreenController() {
   const gameBoard = document.querySelector("#gameBoard");
-
+  const form = document.querySelector("form.display");
   const game = GameController();
 
   const updateScreen = () => {
@@ -154,10 +154,23 @@ function ScreenController() {
     }
     refreshDisplay();
   }
-  
+
+  function getPlayerNames(e) {
+    e.preventDefault();
+    const p1Name = document.querySelector("#playerOne").value;
+    const p2Name = document.querySelector("#playerTwo").value;
+
+    if (p1Name !== "") game.getPlayers()[0].name = p1Name;
+    if (p2Name !== "") game.getPlayers()[1].name = p2Name;
+
+    form.classList.remove("start");
+    refreshDisplay();
+  }
+
   updateScreen();
 
   gameBoard.addEventListener("click", clickHandleBoard);
+  form.addEventListener("submit", getPlayerNames);
 }
 
 ScreenController();
