@@ -1,31 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <script type="module" src="./main.js"></script>
     <title>Tic Tac Toe</title>
   </head>
   <body>
-    <p class="displayTurn"></p>
-    <main id="gameBoard"></main>
+    <p class="display-turn"></p>
+    <main class="game-board"></main>
+
     <form class="display start">
       <p>
-        <span class="marker">Marker : X</span>
-        <label for="playerOne">Player One Name :</label>
-        <input maxlength="12" id="playerOne" type="text" placeholder="Player 1">
+        <span class="marker">Marker: X</span>
+        <label for="playerOne">P1 Name:</label>
+        <input maxlength="12" id="playerOne" type="text" placeholder="Player 1" />
       </p>
       <p>
-        <span class="marker">Marker : O</span>
-        <label for="playerTwo">Player Two Name :</label>
-        <input maxlength="12" id="playerTwo" type="text" placeholder="Player 2">
+        <span class="marker">Marker: O</span>
+        <label for="playerTwo">P2 Name:</label>
+        <input maxlength="12" id="playerTwo" type="text" placeholder="Player 2" />
       </p>
       <button class="button" type="submit">Start</button>
     </form>
+
     <div class="display">
       <p data-message></p>
-      <button class="button" id="restartBtn" type="button">Restart</button>
+      <button class="button restart-btn" type="button">Restart</button>
     </div>
   </body>
 </html>
