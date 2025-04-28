@@ -1,6 +1,7 @@
 export default class Players {
   #players;
   #activePlayer;
+
   constructor() {
     this.#players = [
       {
@@ -16,26 +17,24 @@ export default class Players {
     this.#activePlayer = this.#players[0];
   }
 
-  setPlayerOneName(newName) {
+  set playerOneName(newName) {
     this.#players[0].name = newName;
   }
 
-  setPlayerTwoName(newName) {
+  set playerTwoName(newName) {
     this.#players[1].name = newName;
   }
 
-  getPlayers() {
+  get players() {
     return this.#players;
   }
 
-  getActivePlayer() {
+  get activePlayer() {
     return this.#activePlayer;
   }
 
   switchPlayerTurn() {
     const players = this.#players;
-
-    this.#activePlayer =
-      this.#activePlayer === players[0] ? players[1] : players[0];
+    this.#activePlayer = this.#activePlayer === players[0] ? players[1] : players[0];
   }
 }

@@ -13,7 +13,7 @@ export default class GameBoard {
     this.#board[cell] = player;
   }
 
-  getBoard() {
+  get board() {
     return this.#board;
   }
 }
