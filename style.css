@@ -1,20 +1,13 @@
-@font-face {
-  font-family: "caveat";
-  src: url("./font/caveat-variable-font.woff2");
-}
-
-*,
-*::after,
-*::before {
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 :root {
-  --ff-caveat: "caveat", system-ui;
-  --fs: 3rem;
-  --cell-size: 100px;
+  --ff-cursive: "Segoe Print", "Bradley Hand", Chilanka, TSCu_Comic, casual, cursive;
+  --ff-sans-serif: Verdana, Geneva, Tahoma, sans-serif;
+  --cell-size: 80px;
   --marker-fs: calc(var(--cell-size) * 0.95);
 
   --white: #fff;
@@ -24,13 +17,13 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: var(--white);
-  font-family: var(--ff-caveat);
+  font-family: var(--ff-sans-serif);
   font-size: var(--fs);
   position: relative;
   text-align: center;
@@ -47,12 +40,16 @@ button {
   cursor: pointer;
 }
 
-#gameBoard {
+.game-board {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
-  background-color: var(--black);
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
   gap: 4px;
+  font-family: var(--ff-cursive);
+}
+
+.game-board:has(button) {
+  background-color: var(--black);
 }
 
 [data-cell] {
@@ -65,39 +62,55 @@ button {
   justify-content: center;
 }
 
-.displayTurn {
-  margin-bottom: 8vh;
+.display-turn {
+  font-size: 1.5em;
+  margin-bottom: 1.2em;
 }
 
 .display {
   display: none;
   position: fixed;
   background-color: var(--opacity-black);
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   color: var(--whitesmoke);
-  gap: 1rem;
+  gap: 1.5rem;
+  font-size: 1.5em;
 }
 
 .button {
   padding: 0.2em 1em;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease-in-out;
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    border-color: var(--black);
+  }
 }
 
 .display p {
-  width: min(500px, 90%);
+  max-width: 320px;
 }
 
 .start > p {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 10px;
+  padding: 0.5em;
+  text-align: justify;
+
+  & input {
+    padding: 5px;
+  }
 }
 
 .display.start,
-.display.outcome {
+.display.finished {
   display: flex;
 }
